@@ -30,17 +30,14 @@ class UserProfile extends Component {
         <div className="navbar-fixed">
           <nav>
             <div className="nav-wrapper">
-              <a href="#!" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</a>
-              <a href="#" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></a>
+              <Link to="/main" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
+              <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
               <ul className="right hide-on-med-and-down">
-                <li><Link to="/logout">Logout</Link></li>
+                <li><Link to="/logout" className="tooltipped" data-position="left" data-tooltip="Logout">Logout</Link></li>
               </ul>
             </div>
           </nav>
         </div>
-        <ul className="sidenav" id="mobile-demo">
-          <li><Link to="/logout">Logout</Link></li>
-        </ul>
 
         <main>
           {/* <!-- Page Layout here --> */}
@@ -89,8 +86,8 @@ class UserProfile extends Component {
         <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
         <p className="footer-copy">© 2018 Market Buddy</p>
       </footer>
-      {/* <!--JavaScript at end of body for optimized loading--> */}
-    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+     
+      
   </div>
 
    )

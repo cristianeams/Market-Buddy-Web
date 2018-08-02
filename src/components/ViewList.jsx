@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
 import {post} from 'axios';
+import {
+  Link
+} from 'react-router-dom';
 
 function searchItem(anArr, target){
     for(var i = 0; i < anArr.length; i++){
@@ -121,7 +124,23 @@ class ViewList extends Component{
         // const addProduct = this.addProduct;
     return (
         <div>
-            <div>
+          <div className="navbar-fixed">
+            <nav>
+              <div className="nav-wrapper">
+                <Link to="/main" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
+                <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
+                <ul className="right hide-on-med-and-down">
+                  <li><Link to="/logout">Logout</Link></li>
+                </ul>
+              </div>
+            </nav>
+          </div> 
+          <ul className="sidenav" id="mobile-demo">
+            <li><Link to="/logout">Logout</Link></li>
+          </ul>
+         
+
+            {/* <div>
                 <h1 >I Will show a single list with options to add products/delete/edit etc.. </h1>
             </div>
 
@@ -154,25 +173,95 @@ class ViewList extends Component{
             </div>
 
             <div className="listContent">
-                <h1>Your list</h1>
-                <ul>
-                    {this.state.listProduct.map( (product, index) => {
-                        if(product.quantity > 0){
-                            return (<li key={ index }>
-                                        <span className="prodName">{product.name}</span>
-                                        <button onClick={this.addQuantity}> Add </button>
-                                        <span className="prodQuan">{product.quantity}</span>
-                                        <button onClick={this.minusQuantity}> Minus </button>
-                                        <button onClick={this.deleteItem}> Delete </button>
-                                    </li>);
-                        }
-                    })}
-                </ul>
+              <h1>Your list</h1>
+              <ul>
+                {this.state.listProduct.map( (product, index) => {
+                  if(product.quantity > 0){
+                    return (<li key={ index }>
+                              <span className="prodName">{product.name}</span>
+                              <button onClick={this.addQuantity}> Add </button>
+                              <span className="prodQuan">{product.quantity}</span>
+                              <button onClick={this.minusQuantity}> Minus </button>
+                              <button onClick={this.deleteItem}> Delete </button>
+                            </li>);
+                  }
+                })}
+              </ul>
             </div>
 
-            <button onClick={this.submitList}>Create List</button>
+            <button onClick={this.submitList}>Create List</button> */}
+            {/* <!-- Page Layout here --> */}
+        <main>
+        <div className="row main-div">
+          <div className="col s6 m6 l6" id="left"> 
+            <h5 className="list-name">Movie snacks</h5>
+            <div className="input-field card div-product-input">
+              <input type="text" className="s6" placeholder="Enter a product" />
+              
+              <a className="tooltipped" data-position="right" data-tooltip="Add a product to your list"><i className="material-icons small bl-btn">add_circle</i></a>
+            </div>
+            <div className="input-field card div-product-input">
+              <p className="s6 item-ls">Salt and vinegar chips</p>
+              <input className="quantity" type="number" name="quantity" min="1" />
+              {/* <input type='button' value='-' class='qtyminus' field='quantity' />
+              <input type='text' name='quantity' value='1' class='qty' />
+              <input type='button' value='+' class='qtyplus' field='quantity' /> */}
+              <a><i className="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div className="input-field card div-product-input">
+              <p className="s6 item-ls">Sour patch kids</p>
+              <a><i className="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div className="input-field card div-product-input">
+              <p className="s6 item-ls">Marshmallow</p>
+              <a><i className="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div className="input-field card div-product-input">
+              <p className="s6 item-ls">Green tea pocky</p>
+              <a><i className="material-icons small del-btn">cancel</i></a>
+            </div>
+          </div> 
+          <div className="col s6 m6 l6" id="right"> 
+            <div className="store-list">
+              <table>
+                <thead className="list-titles">
+                  <tr className="table-head list-titles">
+                    <th className="admin">Store</th>
+                    <th className="admin">Total</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Save on Foods</td>
+                    <td>34.22</td>
+                  </tr>
+                  <tr>
+                    <td>Canadian Superstore</td>
+                    <td>30.89</td>
+                  </tr>
+                  <tr>
+                    <td>Safeway</td>
+                    <td>35.87</td>
+                  </tr>
+                  <tr>
+                    <td>Wallmart</td>
+                    <td>32.96</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+        <h5 className="admin">Movie snacks</h5>
+        <img className="map" src="assets/map.png" alt="Map" />
+
+      </main>
+        <footer className="page-footer">
+          <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
+          <p className="footer-copy">© 2018 Market Buddy</p>
+        </footer>
+    </div>
     );
-}
+  }
 }
 export default withRouter(ViewList);

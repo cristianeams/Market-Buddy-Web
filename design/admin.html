@@ -1,0 +1,113 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="shortcut icon" href="assets/favicon.ico">
+      <!--Import Google Icon Fonts-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="materialize/css/mystyles.css">
+      <link type="text/css" rel="stylesheet" href="materialize/css/admin.css">
+
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script src="materialize/js/nav.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="center brand-logo"><i class="material-icons">shopping_cart</i>Market Buddy</a>
+            <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="material-icons">more_vert</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Logout</a></li> 
+      </ul>
+      <main>   
+        <!-- Page Layout here -->
+        <div class="row">
+          <div class="col s12 m4 l3" id="left"> 
+            <h5 class="admin">Admin</h5>
+            <div class="admin-sidebar">
+              <a class="waves-effect waves-light btn-small admin-btn">Products</a>
+              <a class="waves-effect waves-light btn-small admin-btn">Stores</a>
+              <a class="waves-effect waves-light btn-small admin-btn">Settings</a>
+            </div>
+          </div>  
+       
+
+          <div class="col s12 m8 l9" id="right"> 
+            <h5 class="admin">Dashboard</h5>
+
+      <table>
+          <thead>
+            <tr class="table-head">
+              <th>Product</th>
+              <th>Brand</th>
+              <th>Price</th>
+              <th>Store</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+  
+          <tbody>
+            <tr>
+              <td>Chips</td>
+              <td>Lay's</td>
+              <td class="price">$2.99</td>
+              <td>Save on Foods</td>
+              <td> <a class="waves-effect waves-light btn-small">Edit</a> <a class="waves-effect waves-light btn-small advisor">Delete</a></td>
+            </tr>
+            <tr>
+              <td>Rice Krispies</td>
+              <td>Kellog's</td>
+              <td class="price">$1.99</td>
+              <td>Canadian Superstore</td>
+              <td> <a class="waves-effect waves-light btn-small">Edit</a> <a class="waves-effect waves-light btn-small advisor">Delete</a></td>
+            </tr>
+            <tr>
+              <td>Kit kat</td>
+              <td>Nestle</td>
+              <td class="price">$0.99</td>
+              <td>Wallmart</td>
+              <td> <a class="waves-effect waves-light btn-small">Edit</a> <a class="waves-effect waves-light btn-small advisor">Delete</a></td>
+            </tr>
+            <tr>
+              <td>Pocky</td>
+              <td>Glico</td>
+              <td class="price">$2.44</td>
+              <td>Safeway</td>
+              <td> <a class="waves-effect waves-light btn-small">Edit</a> <a class="waves-effect waves-light btn-small advisor">Delete</a></td>
+          </tr>
+          <tr>
+            <td>Apple</td>
+            <td>Granny Smith</td>
+            <td class="price">$4.75</td>
+            <td>IGA</td>
+            <td> <a class="waves-effect waves-light btn-small">Edit</a> <a class="waves-effect waves-light btn-small advisor">Delete</a></td>
+          </tr>
+          </tbody>
+        </table>
+          </div>
+        </div>
+      </main>
+      
+    <footer class="page-footer">
+      <h5 class="icon-footer"><i class="material-icons">shopping_cart</i>Market Buddy</h5>
+      <p class="footer-copy">© 2018 Market Buddy</p>
+    </footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  </body>
+</html>
+        

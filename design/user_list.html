@@ -1,0 +1,106 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="shortcut icon" href="assets/favicon.ico">
+      <!--Import Google Icon Fonts-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="materialize/css/mystyles.css">
+      <link type="text/css" rel="stylesheet" href="materialize/css/user_list.css">
+
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script src="materialize/js/nav.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="center brand-logo"><i class="material-icons">shopping_cart</i>Market Buddy</a>
+            <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="material-icons">more_vert</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Logout</a></li> 
+      </ul>
+      <main>   
+        <!-- Page Layout here -->
+        <div class="row main-div">
+          <div class="col s6 m6 l6" id="left"> 
+            <h5 class="list-name">Movie snacks</h5>
+            <div class="input-field card div-product-input">
+              <input type="text" class="s6" placeholder="Enter a product">
+              <a class="tooltipped" data-position="right" data-tooltip="Add a product to your list"><i class="material-icons small bl-btn">add_circle</i></a>
+            </div>
+            <div class="input-field card div-product-input">
+              <p class="s6 item-ls">Salt and vinegar chips</p>
+              <a><i class="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div class="input-field card div-product-input">
+              <p class="s6 item-ls">Sour patch kids</p>
+              <a><i class="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div class="input-field card div-product-input">
+              <p class="s6 item-ls">Marshmallow</p>
+              <a><i class="material-icons small del-btn">cancel</i></a>
+            </div>
+            <div class="input-field card div-product-input">
+              <p class="s6 item-ls">Green tea pocky</p>
+              <a><i class="material-icons small del-btn">cancel</i></a>
+            </div>
+          </div> 
+        <div class="col s6 m6 l6" id="right"> 
+          <div class="store-list">
+            <table>
+              <thead class="list-titles">
+                <tr class="table-head list-titles">
+                  <th class="admin">Store</th>
+                  <th class="admin">Total</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>Save on Foods</td>
+                  <td>34.22</td>
+                </tr>
+                <tr>
+                  <td>Canadian Superstore</td>
+                  <td>30.89</td>
+                </tr>
+                <tr>
+                  <td>Safeway</td>
+                  <td>35.87</td>
+                </tr>
+                <tr>
+                  <td>Wallmart</td>
+                  <td>32.96</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+      </div>
+
+    </div>
+      <h5 class="admin">Movie snacks</h5>
+      <img class="map" src="assets/map.png" alt="Map">
+    </main>
+      
+    <footer class="page-footer">
+      <h5 class="icon-footer"><i class="material-icons">shopping_cart</i>Market Buddy</h5>
+      <p class="footer-copy">© 2018 Market Buddy</p>
+    </footer>
+
+    <!--JavaScript at end of body for optimized loading-->
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+  </body>
+</html>
+        

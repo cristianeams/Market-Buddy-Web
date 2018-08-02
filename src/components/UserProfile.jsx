@@ -89,6 +89,8 @@ class UserProfile extends Component {
         <h5 className="icon-footer"><i className="material-icons">shopping_cart</i>Market Buddy</h5>
         <p className="footer-copy">© 2018 Market Buddy</p>
       </footer>
+      {/* <!--JavaScript at end of body for optimized loading--> */}
+    <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
   </div>
 
    )

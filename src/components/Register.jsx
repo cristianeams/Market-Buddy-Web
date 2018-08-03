@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { withRouter } from 'react-router'
-import {post} from 'axios';
+import {get, post} from 'axios';
 import {Link} from 'react-router-dom';
 
 class Register extends Component{
@@ -19,22 +19,21 @@ class Register extends Component{
         confirmPassword: newPasswordConfirm
       };
 
-    //redirect if its a cookie  
-    post('/register', data)
+    // post('/api/register', data)
+    post('http://192.168.88.120:7000/users/register', {user:data})
+
       .then(response => response.data)
       .then(user => {
-        console.log("after regPost " + user);
-        localStorage.setItem('user_id', user.id);
-        if(user.message){
-          console.log(user.message);
+
+        if(typeof user === 'string'){
+          console.log("The register is not complete", user);
         } else {
-          this.props.setCurrUser(user);
+          localStorage.setItem('user', JSON.stringify(user.id));
           this.props.history.push({
             pathname: '/user_id'
           })
         }
       });
-
   }
 
   render() {

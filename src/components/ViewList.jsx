@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
-import { withRouter } from 'react-router'
+import { withRouter } from 'react-router';
 import {post} from 'axios';
-import {
-  Link
-} from 'react-router-dom';
+import SearchBar from './SearchBar.jsx';
+import ListItem from './ListItem.jsx';
+import NavBar from './NavBar.jsx';
 
 function searchItem(anArr, target){
     for(var i = 0; i < anArr.length; i++){
@@ -31,7 +31,7 @@ class ViewList extends Component{
           listProduct: []
         }
 
-        this.submitHandle = this.submitHandle.bind(this);
+        this.addSearchList = this.addSearchList.bind(this);
         this.addProduct = this.addProduct.bind(this);
         this.addQuantity = this.addQuantity.bind(this);
         this.minusQuantity = this.minusQuantity.bind(this);
@@ -39,29 +39,22 @@ class ViewList extends Component{
         this.deleteItem = this.deleteItem.bind(this);
       }
 
-    submitHandle(e){
-        e.preventDefault();
-        var newProduct = e.target[0].value;
-        console.log("before send " + newProduct)
-        var data = {
-            item: newProduct,
-        };
+    // componentWillMount() {
+    //     if(!localStorage.user_name){
+    //        this.props.history.push({
+    //             pathname: '/login'
+    //           })
+    //     }
+    // }
 
-        post('/search', data)
-          .then(response => {
-                return response.data
-            }
-          )
-          .then(products => {
-            if(Array.isArray(products)){
+    addSearchList(products){
+        if(Array.isArray(products)){
                 this.setState( { searchProduct: products } );
-            } else {
-                this.setState( { searchProduct: "No items found" } );
-            }
-        });
+        } else {
+            this.setState( { searchProduct: "No items found" } );
+        }
     }
 
-    // Refactoring stretch into different components
     addProduct(e){
         e.preventDefault();
         var oldList = this.state.listProduct;
@@ -73,17 +66,16 @@ class ViewList extends Component{
             var newList = this.state.listProduct;
             this.setState( { listProduct: newList} );
         } else {
-            console.log("not");
             newItem["quantity"] = 1;
             oldList.push(searchItem(this.state.searchProduct, e.target.innerHTML));
             this.setState( {listProduct: oldList} );
         }
-        console.log(this.state.listProduct);
     }
 
     addQuantity(e){
         e.preventDefault();
-        var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
+       console.log(e.target.parentNode.parentNode.children);
+        var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[3].innerHTML);
         addQuantityProduct.quantity += 1;
         var newList = this.state.listProduct;
         this.setState( { listProduct: newList} );
@@ -91,7 +83,7 @@ class ViewList extends Component{
 
     minusQuantity(e){
         e.preventDefault();
-        var minusQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
+        var minusQuantityProduct = searchItem(this.state.listProduct,e.target.parentNode.parentNode.children[3].innerHTML);
         if(minusQuantityProduct.quantity > 0){
             minusQuantityProduct.quantity -= 1;
         }
@@ -101,16 +93,13 @@ class ViewList extends Component{
 
     deleteItem(e){
         e.preventDefault();
-        var deleteProduct = searchItem(this.state.listProduct, e.target.parentNode.children[0].innerHTML);
+        var deleteProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[0].children[3].innerHTML);
         deleteProduct.quantity = 0;
         this.setState( { listProduct: this.state.listProduct } );
     }
 
     submitList(e){
         e.preventDefault();
-
-        console.log(this.state.listProduct);
-
         var data = {
             newList: this.state.listProduct
         };
@@ -124,120 +113,14 @@ class ViewList extends Component{
         // const addProduct = this.addProduct;
     return (
         <div>
-          <div className="navbar-fixed">
-            <nav>
-              <div className="nav-wrapper">
-                <Link to="/main" className="center brand-logo"><i className="material-icons">shopping_cart</i>Market Buddy</Link>
-                <Link to="/logout" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">more_vert</i></Link>
-                <ul className="right hide-on-med-and-down">
-                  <li><Link to="/logout">Logout</Link></li>
-                </ul>
-              </div>
-            </nav>
-          </div> 
-          <ul className="sidenav" id="mobile-demo">
-            <li><Link to="/logout">Logout</Link></li>
-          </ul>
-         
-
-            {/* <div>
-                <h1 >I Will show a single list with options to add products/delete/edit etc.. </h1>
-            </div>
-
-            <div>
-            <form onSubmit={this.submitHandle}>
-            <p>Search Bar</p>
-
-            <label><b>Hit Enter</b></label>
-            <input type="text" placeholder="Hit submit to search" name="product" />
-
-            <div>
-                <button type="submit">Submit</button>
-            </div>
-
-            </form>
-            </div>
-
-            <div>
-                <p>result</p>
-                {!Array.isArray(this.state.searchProduct) ? (
-                    <p>{JSON.stringify(this.state.searchProduct)}</p>
-                   ) : (
-                    <ul>
-                        {this.state.searchProduct.map( (product, index) => {
-                            return (<li key={ index }><button onClick={this.addProduct}>{product.name}</button></li>);
-                          })}
-                    </ul>
-                   )
-                }
-            </div>
-
-            <div className="listContent">
-              <h1>Your list</h1>
-              <ul>
-                {this.state.listProduct.map( (product, index) => {
-                  if(product.quantity > 0){
-                    return (<li key={ index }>
-                              <span className="prodName">{product.name}</span>
-                              <button onClick={this.addQuantity}> Add </button>
-                              <span className="prodQuan">{product.quantity}</span>
-                              <button onClick={this.minusQuantity}> Minus </button>
-                              <button onClick={this.deleteItem}> Delete </button>
-                            </li>);
-                  }
-                })}
-              </ul>
-            </div>
-
-            <button onClick={this.submitList}>Create List</button> */}
-            {/* <!-- Page Layout here --> */}
-        <main>
+         <NavBar />
+         <main>
         <div className="row main-div">
-          <div className="col s6 m6 l6" id="left"> 
-            <h5 className="list-name">Movie snacks</h5>
-            <div className="input-field card div-product-input">
-              <input type="text" className="s6" placeholder="Enter a product" />
-              <a className="waves-effect waves-light btn-small">Add</a>
-            </div>
-            <div className="input-field card div-product-input">
-              <div className="item-container">
-                <a><i className="material-icons small bl-btn">remove</i></a>
-                <input type='text' name='quantity' value='1' className='quantity' />
-                <a><i className="material-icons small bl-btn">add</i></a>
-                <p className="s6 item-ls">Salt and vinegar chips</p>
-              </div>
-              <a><i className="material-icons small del-btn">cancel</i></a>
-            </div>
-            <div className="input-field card div-product-input">
-              <div className="item-container">
-                <a><i className="material-icons small bl-btn">remove</i></a>
-                <input type='text' name='quantity' value='1' className='quantity' />
-                <a><i className="material-icons small bl-btn">add</i></a>
-                <p className="s6 item-ls">Sour patch kids</p>
-              </div>
-              <a><i className="material-icons small del-btn">cancel</i></a>
-            </div>
-            <div className="input-field card div-product-input">
-              <div className="item-container">
-                <a><i className="material-icons small bl-btn">remove</i></a>
-                <input type='text' name='quantity' value='1' className='quantity' />
-                <a><i className="material-icons small bl-btn">add</i></a>
-                <p className="s6 item-ls">Marshmallow</p>
-              </div>
-              <a><i className="material-icons small del-btn">cancel</i></a>
-            </div>
-            <div className="input-field card div-product-input">
-              <div className="item-container">
-                <a><i className="material-icons small bl-btn">remove</i></a>
-                <input type='text' name='quantity' value='1' className='quantity' />
-                <a><i className="material-icons small bl-btn">add</i></a>
-                <p className="s6 item-ls">Green tea pocky</p>
-              </div>
-              <a><i className="material-icons small del-btn">cancel</i></a>
-            </div>
-            <a className="waves-effect waves-light btn-small">Save List</a>
-
-          </div> 
+        <div className="col s6 m6 l6" id="left"> 
+          <h5 className="list-name">Movie snacks</h5>
+          <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
+          <ListItem listProduct={this.state.listProduct} addQuantity={this.addQuantity} minusQuantity={this.minusQuantity} deleteItem={this.deleteItem}/>
+        </div>
           <div className="col s6 m6 l6" id="right"> 
             <div className="store-list">
               <table>
@@ -267,10 +150,15 @@ class ViewList extends Component{
                 </tbody>
               </table>
             </div>
-          </div>
-        </div>
+          </div>  
+
+            
+
+           
+        
         <h5 className="admin">Movie snacks</h5>
         <img className="map" src="assets/map.png" alt="Map" />
+        </div>
 
       </main>
         <footer className="page-footer">

@@ -197,29 +197,46 @@ class ViewList extends Component{
             <h5 className="list-name">Movie snacks</h5>
             <div className="input-field card div-product-input">
               <input type="text" className="s6" placeholder="Enter a product" />
-              
-              <a className="tooltipped" data-position="right" data-tooltip="Add a product to your list"><i className="material-icons small bl-btn">add_circle</i></a>
+              <a className="waves-effect waves-light btn-small">Add</a>
             </div>
             <div className="input-field card div-product-input">
-              <p className="s6 item-ls">Salt and vinegar chips</p>
-              <input className="quantity" type="number" name="quantity" min="1" />
-              {/* <input type='button' value='-' class='qtyminus' field='quantity' />
-              <input type='text' name='quantity' value='1' class='qty' />
-              <input type='button' value='+' class='qtyplus' field='quantity' /> */}
+              <div className="item-container">
+                <a><i className="material-icons small bl-btn">remove</i></a>
+                <input type='text' name='quantity' value='1' className='quantity' />
+                <a><i className="material-icons small bl-btn">add</i></a>
+                <p className="s6 item-ls">Salt and vinegar chips</p>
+              </div>
               <a><i className="material-icons small del-btn">cancel</i></a>
             </div>
             <div className="input-field card div-product-input">
-              <p className="s6 item-ls">Sour patch kids</p>
+              <div className="item-container">
+                <a><i className="material-icons small bl-btn">remove</i></a>
+                <input type='text' name='quantity' value='1' className='quantity' />
+                <a><i className="material-icons small bl-btn">add</i></a>
+                <p className="s6 item-ls">Sour patch kids</p>
+              </div>
               <a><i className="material-icons small del-btn">cancel</i></a>
             </div>
             <div className="input-field card div-product-input">
-              <p className="s6 item-ls">Marshmallow</p>
+              <div className="item-container">
+                <a><i className="material-icons small bl-btn">remove</i></a>
+                <input type='text' name='quantity' value='1' className='quantity' />
+                <a><i className="material-icons small bl-btn">add</i></a>
+                <p className="s6 item-ls">Marshmallow</p>
+              </div>
               <a><i className="material-icons small del-btn">cancel</i></a>
             </div>
             <div className="input-field card div-product-input">
-              <p className="s6 item-ls">Green tea pocky</p>
+              <div className="item-container">
+                <a><i className="material-icons small bl-btn">remove</i></a>
+                <input type='text' name='quantity' value='1' className='quantity' />
+                <a><i className="material-icons small bl-btn">add</i></a>
+                <p className="s6 item-ls">Green tea pocky</p>
+              </div>
               <a><i className="material-icons small del-btn">cancel</i></a>
             </div>
+            <a className="waves-effect waves-light btn-small">Save List</a>
+
           </div> 
           <div className="col s6 m6 l6" id="right"> 
             <div className="store-list">

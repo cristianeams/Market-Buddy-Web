@@ -26,6 +26,11 @@ body {
   margin: auto;
   
 }
+.item-container {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
 
 .bl-btn {
   color: #0069ff;
@@ -41,7 +46,7 @@ input[type=text]:not(.browser-default) {
   margin: auto;
 }
 
-input[type=number]:not(.browser-default){
+input[type="text"].quantity{
   background-color: white;
   border: 1px solid #0069ff;
   width: 10%;
@@ -49,7 +54,7 @@ input[type=number]:not(.browser-default){
   height: 2em;
   border-radius: 3px;
   margin: 0;
-  margin-right: 1em;
+
 }
 
 .item-ls {

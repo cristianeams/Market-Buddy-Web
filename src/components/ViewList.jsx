@@ -54,48 +54,73 @@ class ViewList extends Component{
             this.setState( { searchProduct: "No items found" } );
         }
     }
+    addProduct(product){
+      if(!this.state.listProduct.some(item => item.product === product)){
+        this.setState({
+          listProduct: this.state.listProduct.concat({product: product, quantity: 1})
+        });
+      }
+    }
 
-    addProduct(e){
-        e.preventDefault();
-        var oldList = this.state.listProduct;
-        var newItem = searchItem(this.state.searchProduct, e.target.innerHTML);
-        if(existInList(this.state.listProduct, newItem.name)){
-            console.log("exists");
-            var existingItem = searchItem(this.state.listProduct, newItem.name);
-            existingItem.quantity += 1;
-            var newList = this.state.listProduct;
-            this.setState( { listProduct: newList} );
-        } else {
-            newItem["quantity"] = 1;
-            oldList.push(searchItem(this.state.searchProduct, e.target.innerHTML));
-            this.setState( {listProduct: oldList} );
+    addQuantity(product){
+      this.setState((oldState) => {
+        return {
+          ...oldState,
+          listProduct: oldState.listProduct.map((item) => {
+            if(item.product === product){
+              return {...item, quantity: item.quantity + 1}
+            }
+            return item;
+          })
         }
+      })
     }
-
-    addQuantity(e){
-        e.preventDefault();
-       console.log(e.target.parentNode.parentNode.children);
-        var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[3].innerHTML);
-        addQuantityProduct.quantity += 1;
-        var newList = this.state.listProduct;
-        this.setState( { listProduct: newList} );
-    }
-
-    minusQuantity(e){
-        e.preventDefault();
-        var minusQuantityProduct = searchItem(this.state.listProduct,e.target.parentNode.parentNode.children[3].innerHTML);
-        if(minusQuantityProduct.quantity > 0){
-            minusQuantityProduct.quantity -= 1;
+    minusQuantity(product){
+      this.setState((oldState) => {
+        return {
+          ...oldState,
+          listProduct: oldState.listProduct.map((item) => {
+            console.log(item);
+            if(item.product === product && item.quantity > 0){
+              return {...item, quantity: item.quantity - 1}
+            }
+            return item;
+          })
         }
-        var newList = this.state.listProduct;
-        this.setState( { listProduct: newList} );
-    }
+      });
 
-    deleteItem(e){
-        e.preventDefault();
-        var deleteProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[0].children[3].innerHTML);
-        deleteProduct.quantity = 0;
-        this.setState( { listProduct: this.state.listProduct } );
+    }
+    // addQuantity(e){
+    //     e.preventDefault();
+    //    console.log(e.target.parentNode.parentNode.children);
+    //     var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[3].innerHTML);
+    //     addQuantityProduct.quantity += 1;
+    //     var newList = this.state.listProduct;
+    //     this.setState( { listProduct: newList} );
+    // }
+
+    // minusQuantity(e){
+    //     e.preventDefault();
+    //     var minusQuantityProduct = searchItem(this.state.listProduct,e.target.parentNode.parentNode.children[3].innerHTML);
+    //     if(minusQuantityProduct.quantity > 0){
+    //         minusQuantityProduct.quantity -= 1;
+    //     }
+    //     var newList = this.state.listProduct;
+    //     this.setState( { listProduct: newList} );
+    // }
+
+    deleteItem(product){
+      this.setState((oldState) => {
+        return {
+          ...oldState,
+          listProduct: oldState.listProduct.map((item) => {
+            if(item.product === product){
+              return {...item, quantity: 0}
+            }
+            return item;
+          })
+        }
+      })
     }
 
     submitList(e){
@@ -119,7 +144,10 @@ class ViewList extends Component{
         <div className="col s6 m6 l6" id="left"> 
           <h5 className="list-name">Movie snacks</h5>
           <SearchBar addProduct={this.addProduct} addSearchList={this.addSearchList}/>
-          <ListItem listProduct={this.state.listProduct} addQuantity={this.addQuantity} minusQuantity={this.minusQuantity} deleteItem={this.deleteItem}/>
+          <ListItem listProduct={this.state.listProduct} 
+            addQuantity={this.addQuantity} 
+            minusQuantity={this.minusQuantity} 
+            deleteItem={this.deleteItem}/>
         </div>
           <div className="col s6 m6 l6" id="right"> 
             <div className="store-list">

@@ -25,17 +25,17 @@ class ListItem extends Component {
       // </div>
        
           <div>
-            {this.props.listProduct.map( (product, index) => {
-              if(product.quantity > 0){
+            {this.props.listProduct.map( (item, index) => {
+              if(item.quantity > 0){
                 return(
                   <div className="input-field card div-product-input" key={index}>
                     <div className="item-container">
-                      <button onClick={this.props.minusQuantity}><i className="material-icons small bl-btn">remove</i></button>
-                      <input type='text' name='quantity' defaultValue={product.quantity} className='quantity'/>
-                      <button onClick={this.props.addQuantity} ><i className="material-icons small bl-btn">add</i></button>
-                      <p className="s6 item-ls">{product.name}</p>
+                      <button onClick={() => this.props.minusQuantity(item.product)}><i className="material-icons small bl-btn">remove</i></button>
+                      <input type='text' name='quantity' value={item.quantity} className='quantity'/>
+                      <button onClick={() => this.props.addQuantity(item.product)} ><i className="material-icons small bl-btn">add</i></button>
+                      <p className="s6 item-ls">{item.product.name}</p>
                     </div>
-                    <button onClick={this.props.deleteItem}><i className="material-icons small del-btn">cancel</i></button>
+                    <button onClick={() => this.props.deleteItem(item.product)}><i className="material-icons small del-btn">cancel</i></button>
                   </div>
                 );
               }

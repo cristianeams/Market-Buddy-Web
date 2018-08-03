@@ -13,33 +13,33 @@ class SearchBar extends Component{
   }
 
   submitHandle(e){
-        e.preventDefault();
-        var newProduct = e.target[0].value;
-        var data = {
-            item: newProduct,
-        };
+    e.preventDefault();
+    var newProduct = e.target[0].value;
+    var data = {
+        item: newProduct,
+    };
 
-        post('/search', data)
-          .then(response => {
-                return response.data
-            }
-          )
-          .then(products => {
-            if(Array.isArray(products)){
-              this.setState( { searchProduct: products } );
-            } else {
-              this.setState( { searchProduct: "No items found" } );
-            }
-            this.props.addSearchList(products);
-        });
-    }
+    post('/search', data)
+      .then(response => {
+            return response.data
+      }
+    )
+    .then(products => {
+      if(Array.isArray(products)){
+        this.setState( { searchProduct: products } );
+      } else {
+        this.setState( { searchProduct: "No items found" } );
+      }
+      this.props.addSearchList(products);
+    });
+  }
 
   render() {
     return (
       <div>
         <div className="input-field card div-product-input">
           <form onSubmit={this.submitHandle}> 
-            <input type="text" className="s6" placeholder="Enter a product" />
+            <input type="search" className="s6" placeholder="Enter a product" />
             <button type="submit" className="waves-effect waves-light btn-small">Add</button>
           </form>
         </div>
@@ -50,7 +50,7 @@ class SearchBar extends Component{
             ) : (
               <ul>
                 {this.state.searchProduct.map( (product, index) => {
-                  return (<li key={ index }><button onClick={this.props.addProduct}>{product.name}</button></li>);
+                  return (<li key={ index }><button onClick={() => this.props.addProduct(product)}>{product.name}</button></li>);
                 })}
               </ul>
             )

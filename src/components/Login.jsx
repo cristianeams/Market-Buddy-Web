@@ -20,20 +20,20 @@ class Login extends Component{
     loginRequest = JSON.stringify(loginRequest);
     // post('/api/login', loginRequest)
     post('http://192.168.88.120:7000/users/login', {user: loginRequest})
+    // post('http://192.168.88.124/users/login', {user: loginRequest})
       .then(response => response.data)
       .then(user => {
         if(typeof user === 'string'){
           console.log("The register is not complete", user);
         } else {
+          console.log("we are registered");
           localStorage.setItem('user', JSON.stringify(user.user));
-          // console.log(JSON.parse(localStorage.user));
-          this.props.history.push({
-            pathname: '/user_id'
-          })
+          localStorage.setItem('list', JSON.stringify(user.user.lists));
+          window.location.href = "/users/"+user.user.id;
         }
       })
       .catch(err => {
-        console.log("some messed during the login post", err);
+        console.log("some messed up during the login post", err);
       });
   }
 

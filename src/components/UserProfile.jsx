@@ -11,7 +11,7 @@ import NavBar from './NavBar.jsx';
 import UserSideBar from './UserSideBar.jsx';
 import UserListHeader from './UserListHeader.jsx'
 import Footer from './Footer.jsx'
-import UserList from './UserList.jsx'
+import UserList from './UserList.jsx' 
 
 class UserProfile extends Component {
 
@@ -23,15 +23,23 @@ class UserProfile extends Component {
     if(!localStorage.user){
        this.props.history.push({
             pathname: '/login'
-          })
+          });
+
     }
   }
-
   render() {
     if(!localStorage.user){
-      console.log("here");
       return(<div></div>);
     } else {
+      var userList;
+      if(localStorage.list){
+        const parsedStorage = JSON.parse(localStorage.list);
+        userList = parsedStorage.map((list) => {
+          return <UserList listName={list} userId={JSON.parse(localStorage.user).id} key={list.id} />
+      });
+      } else {
+        userList = function(){return(<p>You does not have any shopping lists</p>)};
+      }
       return(
         <div>
         <NavBar />
@@ -42,16 +50,13 @@ class UserProfile extends Component {
               <div className="col s12 m8 l9" id="right">
                 <UserListHeader />
                 <div className="row grid-lists">
-                  <UserList listName={"Movie snacks"} />
-                  <UserList listName={"Movie snacks"} />
-                  <UserList listName={"Movie snacks"} />
-                  <UserList listName={"Movie snacks"} />
+                  {userList}
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      </main>
-      <Footer />
-  </div>
+          </main>
+          <Footer />
+      </div>
      )
     }
   }

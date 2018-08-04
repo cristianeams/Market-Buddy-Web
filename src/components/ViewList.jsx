@@ -6,53 +6,53 @@ import ListItem from './ListItem.jsx';
 import NavBar from './NavBar.jsx';
 
 function searchItem(anArr, target){
-    for(var i = 0; i < anArr.length; i++){
-        if(anArr[i].name === target){
-            return anArr[i];
-        }
+  for(var i = 0; i < anArr.length; i++){
+    if(anArr[i].name === target){
+      return anArr[i];
     }
-    return -1;
+  }
+  return -1;
 }
 
 function existInList(anArr, target){
-    for(var i = 0; i < anArr.length; i++){
-        if(anArr[i].name === target){
-            return true;
-        }
+  for(var i = 0; i < anArr.length; i++){
+    if(anArr[i].name === target){
+      return true;
     }
-    return false;
+  }
+  return false;
 }
 
 class ViewList extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-          searchProduct: [],
-          listProduct: []
-        }
+  constructor(props) {
+    super(props);
+    this.state = {
+      searchProduct: [],
+      listProduct: []
+    }
 
-        this.addSearchList = this.addSearchList.bind(this);
-        this.addProduct = this.addProduct.bind(this);
-        this.addQuantity = this.addQuantity.bind(this);
-        this.minusQuantity = this.minusQuantity.bind(this);
-        this.submitList = this.submitList.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
-      }
+    this.addSearchList = this.addSearchList.bind(this);
+    this.addProduct = this.addProduct.bind(this);
+    this.addQuantity = this.addQuantity.bind(this);
+    this.minusQuantity = this.minusQuantity.bind(this);
+    this.submitList = this.submitList.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
+  }
 
-    // componentWillMount() {
-    //     if(!localStorage.user_name){
-    //        this.props.history.push({
-    //             pathname: '/login'
-    //           })
-    //     }
-    // }
+  // componentWillMount() {
+  //     if(!localStorage.user_name){
+  //        this.props.history.push({
+  //             pathname: '/login'
+  //           })
+  //     }
+  // }
 
     addSearchList(products){
-        if(Array.isArray(products)){
-                this.setState( { searchProduct: products } );
-        } else {
-            this.setState( { searchProduct: "No items found" } );
-        }
+      if(Array.isArray(products)){
+        this.setState( { searchProduct: products } );
+      } else {
+        this.setState( { searchProduct: "No items found" } );
+      }
     }
     addProduct(product){
       if(!this.state.listProduct.some(item => item.product === product)){
@@ -80,7 +80,6 @@ class ViewList extends Component{
         return {
           ...oldState,
           listProduct: oldState.listProduct.map((item) => {
-            console.log(item);
             if(item.product === product && item.quantity > 0){
               return {...item, quantity: item.quantity - 1}
             }
@@ -90,25 +89,6 @@ class ViewList extends Component{
       });
 
     }
-    // addQuantity(e){
-    //     e.preventDefault();
-    //    console.log(e.target.parentNode.parentNode.children);
-    //     var addQuantityProduct = searchItem(this.state.listProduct, e.target.parentNode.parentNode.children[3].innerHTML);
-    //     addQuantityProduct.quantity += 1;
-    //     var newList = this.state.listProduct;
-    //     this.setState( { listProduct: newList} );
-    // }
-
-    // minusQuantity(e){
-    //     e.preventDefault();
-    //     var minusQuantityProduct = searchItem(this.state.listProduct,e.target.parentNode.parentNode.children[3].innerHTML);
-    //     if(minusQuantityProduct.quantity > 0){
-    //         minusQuantityProduct.quantity -= 1;
-    //     }
-    //     var newList = this.state.listProduct;
-    //     this.setState( { listProduct: newList} );
-    // }
-
     deleteItem(product){
       this.setState((oldState) => {
         return {
@@ -134,8 +114,7 @@ class ViewList extends Component{
             .then(b => console.log(b));
     }
 
-    render() {
-        // const addProduct = this.addProduct;
+  render() {
     return (
         <div>
          <NavBar />
@@ -178,14 +157,9 @@ class ViewList extends Component{
                 </tbody>
               </table>
             </div>
-          </div>  
-
-            
-
-           
-        
+        </div>   
         <h5 className="admin">Movie snacks</h5>
-        <img className="map" src="assets/map.png" alt="Map" />
+
         </div>
 
       </main>

@@ -4,6 +4,10 @@ body {
   text-align: center;
 }
 
+button, input, select, textarea {
+  font-family: 'Montserrat', sans-serif;
+
+}
 
 .list-name {
   color: #031b4e;
@@ -37,13 +41,48 @@ body {
 }
 
 .del-btn {
-  color: red;
+  background-color: #fff;
+  color: red
 }
 
-input[type=text]:not(.browser-default) {
-  border-bottom-color: #0069ff;
-  width: 70%;
-  margin: auto;
+.del-btn:hover {
+  background-color: red;
+  color: #fff;
+}
+
+.bl-btn:hover {
+  color: #fff;
+}
+
+
+input[type=search]:not(.browser-default) {
+  // border-bottom-color: #0069ff;
+  width: 80%;
+  // margin: auto;
+  text-align: center;
+  margin: 1em;
+  padding-right: 1em;
+}
+button:visited {
+  background-color: transparent !important;
+}
+
+button.btn-small:visited, button.btn-small:active{
+  background-color: transparent !important;
+}
+
+button[type="submit"].search-btn {
+  margin-right: 1em;
+}
+
+.styles_modal__gNwvD {
+  width:400px;
+}
+
+.items-found {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1em;
 }
 
 input[type="text"].quantity{

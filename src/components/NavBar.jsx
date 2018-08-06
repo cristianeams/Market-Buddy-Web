@@ -3,7 +3,7 @@ import { withRouter } from 'react-router';
 import {
   Link
 } from 'react-router-dom';
-import {Button} from 'react-materialize';
+
 
 class NavBar extends Component{
 

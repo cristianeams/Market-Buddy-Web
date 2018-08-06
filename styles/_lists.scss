@@ -17,10 +17,10 @@ h1, h2, h3,h4, h5, a, li, p, .btn, footer, span {
 }
 
 #left {
-  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
+  // box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2);
   background-color: #fff;
   text-align:center;
-  height: 100vh /* Full-height: remove this if you want "auto" height */
+  /*height: 100vh  Full-height: remove this if you want "auto" height */
 }
 
 img.circle {
@@ -165,8 +165,8 @@ button.dl-list {
 }
 
 @media (max-width: 780px) {
-  #left {
-    height: 100vh;
+  #left, #right {
+    width: -webkit-fill-available;
   }
   #right {
     text-align: center;
@@ -185,6 +185,7 @@ button.dl-list {
 @media (max-width: 600px) {
   #left {
     height: auto;
+    width: 400px;
   }
   #right {
     text-align: center;
@@ -193,7 +194,7 @@ button.dl-list {
     grid-template-columns: none;
   }
   .float-blue {
-    margin-left: 5em;
+    // margin-left: 5em;
     justify-content: space-around;
   }
 

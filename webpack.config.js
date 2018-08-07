@@ -6,7 +6,8 @@ module.exports = {
   devtool: 'eval',
   entry: [
     // 'webpack-dev-server/client?http://localhost:8080',
-    './src/index.jsx'
+    // entry: ['babel-polyfill', './src/app']
+    'babel-polyfill', './src/index.jsx'
   ],
   output: {
     path: path.join(__dirname, 'dist'),

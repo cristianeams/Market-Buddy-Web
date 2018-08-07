@@ -56,8 +56,15 @@ class Admin extends Component {
         const storesPrms = getStores();
         const pricesPrms = getPrices();
 
-        const stores = await storesPrms;
+        try {
+          const stores = await storesPrms;
+          return stores;
+        } catch(error){
+          return {error: "Try didn't work"};
+        }
+
         const storesById = {};
+
         stores.forEach((store) => {
           storesById[store.id]=store;
         });
@@ -77,20 +84,20 @@ class Admin extends Component {
           prices: pricesWithStoresGroupedByProductId[product.id] || []
         }));
       })();
-      // get("http://192.168.88.120:7000/products")
-      // .then(response => response.data)
-      // .then(products => {
-      //   adminDashBoard = products;
-      //   get("http://192.168.88.120:7000/stores")
-      //   .then(response => response.data)
-      //   .then(stores => {
-      //     for(var i = 0; i < adminDashBoard.length; i++){
-      //       adminDashBoard[i]["stores"] = stores;
+      get("http://192.168.88.120:7000/products")
+      .then(response => response.data)
+      .then(products => {
+        adminDashBoard = products;
+        get("http://192.168.88.120:7000/stores")
+        .then(response => response.data)
+        .then(stores => {
+          for(var i = 0; i < adminDashBoard.length; i++){
+            adminDashBoard[i]["stores"] = stores;
 
-      //     }
-      //     get("http://192.168.88.120:7000/prices")
-      //     .then(response => response.data)
-      //     .then(prices => {
+          }
+          get("http://192.168.88.120:7000/prices")
+          .then(response => response.data)
+          .then(prices => {
             // for(var priceIndex = 0; priceIndex < prices.length; priceIndex++){
             //   var price = prices[priceIndex];
 
@@ -116,24 +123,24 @@ class Admin extends Component {
             // }
             // console.log(adminDashBoard);
 
-            // for(var productIndex = 0; productIndex < adminDashBoard.length; productIndex++){
-            //   var product = adminDashBoard[productIndex];
-            //   for(var storeIndex = 0; storeIndex < product.stores.length; storeIndex++){
-            //     var store = product.stores[storeIndex];
-            //     for(var priceIndex = 0; priceIndex < prices.length; priceIndex++){
-            //       var price = prices[priceIndex];
+            for(var productIndex = 0; productIndex < adminDashBoard.length; productIndex++){
+              var product = adminDashBoard[productIndex];
+              for(var storeIndex = 0; storeIndex < product.stores.length; storeIndex++){
+                var store = product.stores[storeIndex];
+                for(var priceIndex = 0; priceIndex < prices.length; priceIndex++){
+                  var price = prices[priceIndex];
 
-            //       if(price.product_id === product.id && price.store_id === store.id){
-            //         store["price"] = price
-            //       }
-            //     }
-            //   }
-            // }
-            // console.log(adminDashBoard);
-            // localStorage.setItem("adminList", JSON.stringify(adminDashBoard));
-      //     });
-      //   });
-      // });
+                  if(price.product_id === product.id && price.store_id === store.id){
+                    store["price"] = price
+                  }
+                }
+              }
+            }
+            console.log(adminDashBoard);
+            localStorage.setItem("adminList", JSON.stringify(adminDashBoard));
+          });
+        });
+      });
     }
   }
 
@@ -153,7 +160,9 @@ class Admin extends Component {
     }
 
     var i = 0;
-    const all_items = JSON.parse(localStorage.adminList).map( item => {
+    console.log("localstorage: ", localStorage);
+    console.log("localStorage admin", JSON.parse(localStorage.getItem('adminList')));
+    const all_items = JSON.parse(localStorage.getItem('adminList')).map( item => {
       return item.stores.map( store => {
         i++;
         return (<AdminColumn key={i} deleteProduct={this.deleteProduct.bind(this)} storeName={store.name} productName={item.name} productBrand={item.brand} productPrice={store.price} />)

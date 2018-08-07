@@ -1,0 +1,83 @@
+
+  <!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="shortcut icon" href="assets/favicon.ico">
+      <!--Import Google Icon Fonts-->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+      <!--Import materialize.css-->
+      <link type="text/css" rel="stylesheet" href="materialize/css/materialize.min.css"  media="screen,projection"/>
+      <link type="text/css" rel="stylesheet" href="materialize/css/mystyles.css">
+      <link type="text/css" rel="stylesheet" href="materialize/css/admin.css">
+      <link type="text/css" rel="stylesheet" href="materialize/css/register.css">
+      <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+      <script src="materialize/js/nav.js"></script>
+
+      <!--Let browser know website is optimized for mobile-->
+      <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+      <div class="navbar-fixed">
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#!" class="center brand-logo"><i class="material-icons">shopping_cart</i>Market Buddy</a>
+            <a href="#" data-target="mobile-demo" class="right sidenav-trigger"><i class="material-icons">more_vert</i></a>
+            <ul class="right hide-on-med-and-down">
+              <li><a href="#">Logout</a></li>
+            </ul>
+          </div>
+        </nav>
+      </div>
+      <ul class="sidenav" id="mobile-demo">
+        <li><a href="sass.html">Logout</a></li> 
+      </ul>
+      <main>   
+        <!-- Page Layout here -->
+        <div class="row">
+          <div class="col s12 m4 l3" id="left"> 
+            <h5 class="admin">Admin</h5>
+            <div class="admin-sidebar">
+              <a class="waves-effect waves-light btn-small admin-btn" href="products.html">Products</a>
+              <a class="waves-effect waves-light btn-small admin-btn" href="stores.html">Stores</a>
+              <!-- <a class="waves-effect waves-light btn-small admin-btn">Settings</a> -->
+            </div>
+          </div>  
+          <div class="col s12 m8 l9" id="right"> 
+            <h5 class="admin">Add a store</h5>
+            <form class="vertical-form">
+                <div class="row">
+                  <div class="input-field col s12">
+                    <input id="name" type="text" class="validate">
+                    <label for="name">Store name</label>
+                  </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                      <input id="url" type="url" class="validate">
+                      <label for="url">Store logo URL</label>
+                    </div>
+                </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <input id="website" type="url" class="validate">
+                  <label for="website">Website</label>
+                </div>
+              </div>
+              <button class="btn waves-effect " type="submit" name="action">Submit
+                <i class="material-icons right">send</i>
+              </button>
+              </form>
+          </div>
+        </main>
+      
+        <footer class="page-footer">
+          <h5 class="icon-footer"><i class="material-icons">shopping_cart</i>Market Buddy</h5>
+          <p class="footer-copy">© 2018 Market Buddy</p>
+        </footer>
+    
+        <!--JavaScript at end of body for optimized loading-->
+        <script type="text/javascript" src="materialize/js/materialize.min.js"></script>
+      </body>
+    </html>
+            

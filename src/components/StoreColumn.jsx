@@ -7,14 +7,13 @@ class StoreColumn extends Component{
 
     const list = this.props.price.map( price => {
       return this.props.product.map( product => {
-        if(price.product_id === product.id && price.store_id === this.props.currStore.id){
+        if(price.product_id === product.id && price.store_id === this.props.currStore.id && product.quantity > 0){
           return (
             <div className="prod-list">
               <p>{product.name}</p>
               <div className="c-list">
                 <div className="c-list">
-                <p>Quantity: {product.quantity}</p> 
-          
+                  <p>{product.name}</p>
                 </div>
                 <div className="c-list">
                   <i className="material-icons">attach_money</i>

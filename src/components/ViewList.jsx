@@ -100,9 +100,15 @@ class ViewList extends Component{
       // }
       product["quantity"] = 1;
 
-      if(searchItem(this.state.listProduct, product.name) === -1){
+      if(searchItemId(this.state.listProduct, product.id) === -1){
+        console.log("here");
         var newProduct = this.state.listProduct.concat(product);
         this.setState( { listProduct: newProduct } );
+      } 
+      if(searchItemId(this.state.listProduct, product.id).quantity === 0){
+        var newProduct = searchItemId(this.state.listProduct, product.id);
+        newProduct.quantity += 1;
+        this.setState( { listProduct: this.state.listProduct } );
       }
     }
 
@@ -198,11 +204,13 @@ class ViewList extends Component{
 
               window.Materialize.toast('List saved!', 2000, 'update-alert')
 
+              // localStorage.removeItem('list');
+
               localStorage.setItem('list', JSON.stringify(newList));
 
-              this.props.history.push({
-                pathname: "/users/"+ JSON.parse(localStorage.user).id
-              });
+              // this.props.history.push({
+              //   pathname: "/users/"+ JSON.parse(localStorage.user).id
+              // });
 
 
             });

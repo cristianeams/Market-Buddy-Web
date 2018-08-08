@@ -38,6 +38,14 @@ class App extends Component {
 
   }
 
+  componentWillMount(){
+    navigator.geolocation.watchPosition(showPosition);
+    function showPosition(position) {
+      localStorage.setItem("latitude", position.coords.latitude);
+      localStorage.setItem("longitude", position.coords.longitude);
+    }
+  }
+
 
   render() {
       return (
